@@ -1,17 +1,26 @@
 <template>
   <div>
     <div v-for="task in tasks" :key="task.id">
-      <h3>{{ task.text }}</h3>
+      <Task :task="task" @delete-task="$emit('delete-task', task.id)"></Task>
     </div>
   </div>
 </template>
 
 <script>
+import Task from "@/components/Task";
+
 export default {
-  name: "Task-component",
+  name: "Tasks-component",
   props: {
     tasks: Array,
   },
+  components: {
+    Task,
+  },
+
+  methods: {},
+
+  emits: ["delete-task"],
 };
 </script>
 
