@@ -1,6 +1,10 @@
 <template>
   <div>
-    <button class="btn" :style="{ backgroundColor: color }" @click="onClick()">
+    <button
+      class="btn"
+      :style="{ backgroundColor: color }"
+      @click="changeValue()"
+    >
       {{ text }}
     </button>
   </div>
@@ -10,11 +14,18 @@
 export default {
   name: "button-component",
 
+  data() {
+    return {
+      showAddTask: false,
+    };
+  },
+
   props: ["color", "text"],
 
   methods: {
-    onClick() {
-      alert("click");
+    changeValue() {
+      this.showAddTask = !this.showAddTask;
+      this.$emit("showAddTask", this.showAddTask);
     },
   },
 };

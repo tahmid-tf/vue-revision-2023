@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="container">
-      <Header title="Task Tracker"></Header>
+      <Header title="Task Tracker" @showAddTask="showAddTask"></Header>
+      <AddTask @add-task="addTask"></AddTask>
       <Tasks
         :tasks="tasks"
         @delete-task="deleteTask"
@@ -14,11 +15,13 @@
 <script>
 import Header from "./components/Header.vue";
 import Tasks from "./components/Tasks.vue";
+import AddTask from "./components/AddTask.vue";
 
 export default {
   components: {
     Header,
     Tasks,
+    AddTask,
   },
 
   data() {
@@ -29,6 +32,14 @@ export default {
   },
 
   methods: {
+    showAddTask(data) {
+      console.log(data);
+    },
+
+    addTask(data) {
+      this.tasks.push(data);
+    },
+
     deleteTask(id) {
       this.tasks.splice(id - 1, 1);
     },

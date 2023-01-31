@@ -3,7 +3,7 @@
     <header>
       <h1>{{ title }}</h1>
 
-      <Buttton color="green" text="Add Task" />
+      <Buttton color="green" text="Add Task" @showAddTask="showAddTask" />
     </header>
   </div>
 </template>
@@ -16,6 +16,13 @@ export default {
   components: {
     Buttton,
   },
+
+  methods: {
+    showAddTask(data) {
+      this.$emit("showAddTask", data);
+    },
+  },
+
   props: {
     title: {
       type: String,
