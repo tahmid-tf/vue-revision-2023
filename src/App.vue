@@ -2,7 +2,11 @@
   <div>
     <div class="container">
       <Header title="Task Tracker"></Header>
-      <Tasks :tasks="tasks" @delete-task="deleteTask" />
+      <Tasks
+        :tasks="tasks"
+        @delete-task="deleteTask"
+        @toggle-reminder="toggleReminder"
+      />
     </div>
   </div>
 </template>
@@ -20,12 +24,21 @@ export default {
   data() {
     return {
       tasks: [],
+      gg: [],
     };
   },
 
   methods: {
     deleteTask(id) {
       this.tasks.splice(id - 1, 1);
+    },
+
+    toggleReminder(id) {
+      this.tasks.forEach((el) => {
+        if (el.id == id) {
+          el.reminder = !el.reminder;
+        }
+      });
     },
   },
 
